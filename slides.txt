@@ -401,7 +401,7 @@ image::images/aiming-l.jpg["",float="right"]
  Package::Separator;      # C++ like
 
  /(?:.*)/                 # Regex (?: ) group w/o capture
- /[:class:]/              # POSIX
+ /[[:punct:]]/            # POSIX char class
  use mod :tag;            # Import group convention
 -----------------------------------------------------
 
