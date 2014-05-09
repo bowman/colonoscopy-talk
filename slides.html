@@ -3,28 +3,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The First Law of Language Design: A Colonoscopy</title>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="copyright" content="Copyright &#169; Brad Bowman &lt;first-law@bereft.net&gt;" />
-<meta name="generator" content="AsciiDoc 8.6.3" />
+<meta name="generator" content="AsciiDoc 8.6.9" />
 <meta name="duration" content="25" />
 <style type="text/css">
-/* Sans-serif font. */
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
 h1, h2, h3, h4, h5, h6,
 div.title, caption.title,
 thead, p.table.header,
-div#toctitle,
-span#author, span#revnumber, span#revdate, span#revremark,
-div#footer {
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
   font-family: Arial,Helvetica,sans-serif;
-}
-
-/* Serif font. */
-div.sectionbody {
-  font-family: Georgia,"Times New Roman",Times,serif;
-}
-
-/* Monospace font. */
-tt {
-  font-size: inherit;
 }
 
 body {
@@ -49,11 +47,6 @@ strong {
   color: #083194;
 }
 
-tt {
-  font-size: inherit;
-  color: navy;
-}
-
 h1, h2, h3, h4, h5, h6 {
   color: #527bbd;
   margin-top: 1.2em;
@@ -72,6 +65,9 @@ h3 {
 }
 h3 + * {
   clear: left;
+}
+h5 {
+  font-size: 1.0em;
 }
 
 div.sectionbody {
@@ -93,41 +89,47 @@ ul, ol, li > p {
 ul > li     { color: #aaa; }
 ul > li > * { color: black; }
 
-pre {
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
   padding: 0;
   margin: 0;
 }
+pre {
+  white-space: pre-wrap;
+}
 
-span#author {
+#author {
   color: #527bbd;
   font-weight: bold;
   font-size: 1.1em;
 }
-span#email {
+#email {
 }
-span#revnumber, span#revdate, span#revremark {
+#revnumber, #revdate, #revremark {
 }
 
-div#footer {
+#footer {
   font-size: small;
   border-top: 2px solid silver;
   padding-top: 0.5em;
   margin-top: 4.0em;
 }
-div#footer-text {
+#footer-text {
   float: left;
   padding-bottom: 0.5em;
 }
-div#footer-badges {
+#footer-badges {
   float: right;
   padding-bottom: 0.5em;
 }
 
-div#preamble {
+#preamble {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
 }
-div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.imageblock, div.exampleblock, div.verseblock,
 div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
 div.admonitionblock {
   margin-top: 1.0em;
@@ -185,7 +187,7 @@ div.quoteblock, div.verseblock {
   margin-left: 1.0em;
   margin-right: 10%;
   border-left: 5px solid #f0f0f0;
-  color: #777777;
+  color: #888;
 }
 
 div.quoteblock > div.attribution {
@@ -225,7 +227,7 @@ div.exampleblock > div.content {
 }
 
 div.imageblock div.content { padding-left: 0; }
-span.image img { border-style: none; }
+span.image img { border-style: none; vertical-align: text-bottom; }
 a.image:visited { color: white; }
 
 dl {
@@ -268,35 +270,12 @@ div.compact div, div.compact div {
   margin-bottom: 0.1em;
 }
 
-div.tableblock > table {
-  border: 3px solid #527bbd;
-}
-thead, p.table.header {
-  font-weight: bold;
-  color: #527bbd;
-}
 tfoot {
   font-weight: bold;
 }
 td > div.verse {
   white-space: pre;
 }
-p.table {
-  margin-top: 0;
-}
-/* Because the table frame attribute is overriden by CSS in most browsers. */
-div.tableblock > table[frame="void"] {
-  border-style: none;
-}
-div.tableblock > table[frame="hsides"] {
-  border-left-style: none;
-  border-right-style: none;
-}
-div.tableblock > table[frame="vsides"] {
-  border-top-style: none;
-  border-bottom-style: none;
-}
-
 
 div.hdlist {
   margin-top: 0.8em;
@@ -363,14 +342,14 @@ div.colist td img {
 }
 
 @media print {
-  div#footer-badges { display: none; }
+  #footer-badges { display: none; }
 }
 
-div#toc {
+#toc {
   margin-bottom: 2.5em;
 }
 
-div#toctitle {
+#toctitle {
   color: #527bbd;
   font-size: 1.1em;
   font-weight: bold;
@@ -378,7 +357,7 @@ div#toctitle {
   margin-bottom: 0.1em;
 }
 
-div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -395,6 +374,167 @@ div.toclevel4 {
   font-size: 0.9em;
 }
 
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
 /* slidy.css
 
    Copyright (c) 2005-2010 W3C (MIT, ERCIM, Keio), All Rights Reserved.
@@ -840,6 +980,8 @@ li {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
+
+
 </style>
 <script type="text/javascript">
 /*<![CDATA[*/
@@ -1592,7 +1734,8 @@ var w3c_slidy = {
     if (this.keyboardless)
       p1.innerHTML = "Tap footer to move to next slide";
     else
-      p1.innerHTML = ""; // BSB
+      p1.innerHTML = "Space or Right Arrow to move to next " +
+                     "slide, click help below for more details";
 
     this.add_listener(prompt, "click", function (e) {
       document.body.removeChild(prompt);
@@ -3701,7 +3844,8 @@ setTimeout(w3c_slidy.hide_slides, 50);
 <div class="sectionbody" style="max-width:45em">
 <div class="imageblock" style="text-align:center;">
 <div class="content">
-<img alt="" src="data:image/png;base64,
+<img alt=""
+src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAR8AAAGQCAIAAAAY0/MXAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
 AK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlz
 AAALEwAACxMBAJqcGAAAAAl2cEFnAAABHwAAAZAAMabm3gAAgABJREFUeNo8/cuzbUma3Ie5+xex
@@ -7002,7 +7146,8 @@ visual examination of the colon <em>:</em> (with a grep)
 </dl></div>
 <div class="imageblock" style="text-align:center;">
 <div class="content">
-<img alt="" src="data:image/jpg;base64,
+<img alt=""
+src="data:image/jpeg;base64,
 /9j/4AAQSkZJRgABAQEASABIAAD/4Q/dRXhpZgAATU0AKgAAAAgABwEPAAIAAAAESFRDAAEQAAIA
 AAALAAAAYgEaAAUAAAABAAAAbgEbAAUAAAABAAAAdgEoAAMAAAABAAIAAAITAAMAAAABAAEAAIdp
 AAQAAAABAAAAfgAAAUJIVEMgRGVzaXJlAAAAAABIAAAAAQAAAEgAAAABAAqIJwADAAAAAQBkAACQ
@@ -7783,7 +7928,8 @@ Can it be used as a quick evaluation of languages?
 </ul>
 <div class="imageblock" style="text-align:center;">
 <div class="content">
-<img alt="" src="data:image/jpg;base64,
+<img alt=""
+src="data:image/jpeg;base64,
 /9j/4AAQSkZJRgABAQEASABIAAD/4RZJRXhpZgAATU0AKgAAAAgABwEPAAIAAAAESFRDAAEQAAIA
 AAALAAAAYgEaAAUAAAABAAAAbgEbAAUAAAABAAAAdgEoAAMAAAABAAIAAAITAAMAAAABAAEAAIdp
 AAQAAAABAAAAfgAAAUJIVEMgRGVzaXJlAAAAAABIAAAAAQAAAEgAAAABAAqIJwADAAAAAQBkAACQ
@@ -8817,7 +8963,8 @@ This is a joke gone too far.
 The slides will probably be on github, so fork off and fix the bugs.</p></div>
 <div class="imageblock" style="text-align:center;">
 <div class="content">
-<img alt="" src="data:image/jpg;base64,
+<img alt=""
+src="data:image/jpeg;base64,
 /9j/4AAQSkZJRgABAQEASABIAAD/4QldRXhpZgAATU0AKgAAAAgABwEPAAIAAAAESFRDAAEQAAIA
 AAALAAAAYgEaAAUAAAABAAAAbgEbAAUAAAABAAAAdgEoAAMAAAABAAIAAAITAAMAAAABAAEAAIdp
 AAQAAAABAAAAfgAAAUJIVEMgRGVzaXJlAAAAAABIAAAAAQAAAEgAAAABAAqIJwADAAAAAQBkAACQ
@@ -9212,7 +9359,8 @@ C
 </ul>
 <div class="imageblock" style="text-align:center;">
 <div class="content">
-<img alt="" src="data:image/jpg;base64,
+<img alt=""
+src="data:image/jpeg;base64,
 /9j/4AAQSkZJRgABAQEASABIAAD/4QqxRXhpZgAATU0AKgAAAAgABwEPAAIAAAAESFRDAAEQAAIA
 AAALAAAAYgEaAAUAAAABAAAAbgEbAAUAAAABAAAAdgEoAAMAAAABAAIAAAITAAMAAAABAAEAAIdp
 AAQAAAABAAAAfgAAAUJIVEMgRGVzaXJlAAAAAABIAAAAAQAAAEgAAAABAAqIJwADAAAAAQBkAACQ
@@ -9488,7 +9636,8 @@ Mtsxp55cs0tTePSOMw8k8t5sKV1wOnzhQoeDSP/Z" />
 <div class="sectionbody" style="max-width:45em">
 <div class="imageblock" style="float:right;">
 <div class="content">
-<img alt="" src="data:image/png;base64,
+<img alt=""
+src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAATEAAAGQCAIAAABJR8B0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
 AK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlz
 AAALEwAACxMBAJqcGAAAAAl2cEFnAAABMQAAAZAADACCmAAAgABJREFUeNpM/c3uZFmy7IeZmfuO
@@ -12807,7 +12956,7 @@ Dated - GOTO, Size Limits, CAPITALS, punch-cardy
 <div class="sectionbody" style="max-width:45em">
 <div class="paragraph"><p>Range in SELECT/CASE</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -12832,7 +12981,7 @@ b, A(:,:)
 <div class="sectionbody" style="max-width:45em">
 <div class="paragraph"><p>Dynamic Array Dimensions</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -12854,7 +13003,8 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sectionbody" style="max-width:45em">
 <div class="imageblock" style="float:right;">
 <div class="content">
-<img alt="" src="data:image/png;base64,
+<img alt=""
+src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAATMAAAGQCAAAAADnu9jCAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
 AK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlz
 AAALEwAACxMBAJqcGAAAAAl2cEFnAAABMwAAAZAAQcgjkwAAVGZJREFUeNrtXQVgFEcXfrt3F3d3
@@ -13270,12 +13420,13 @@ Special characters &amp; keyboard, over-struck
 <div class="paragraph"><p>Statement</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>label : expressions A comment
-: (colon) Separates a label from the rest of the line.</tt></pre>
+<pre><code>label : expressions A comment
+: (colon) Separates a label from the rest of the line.</code></pre>
 </div></div>
 <div class="imageblock" style="text-align:center;">
 <div class="content">
-<img alt="" src="data:image/png;base64,
+<img alt=""
+src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAfQAAACZCAQAAABzwgAxAAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAA
 AEgAAABIAEbJaz4AAAAJdnBBZwAAAfQAAACZAJ0l3OEAAIAASURBVHja7L13nBzFmf//ru7Jszub
 c9AGpdUqSwgRhckZE2zAEeeEs41tfOfMHTYOd444G/vMGWODMTnnIIGEctZKu9LmHGZ2Unf9/uje
@@ -13874,12 +14025,12 @@ gg==" />
 <div class="paragraph"><p>Sudoku Solver (K an APL descendent)</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>r:&amp;9#9;c:81#!9;v:(r;c;(_c%3)+3*_r%3);b:+/'a:(-9#0b\:)'!512;f:&amp;:'~a
+<pre><code>r:&amp;9#9;c:81#!9;v:(r;c;(_c%3)+3*_r%3);b:+/'a:(-9#0b\:)'!512;f:&amp;:'~a
 m:-1_(_.5*)\256;o:a[m]{+/m*x|y}/:\:a;a:(?,/((.=:)'v)@')'+v
 o:o,\:512+!9;p:{@[@[x;a y;o z];y;:;512+z]}
 g:{$[0&gt;m:|/i:b x;,x;,/g'p[x;i]'f x i?:m]}
 G:{(9*!9)_-511+*g p/[81#0;i;-1+x i:&amp;0&lt;x:,/x]}
-+/(+/100 10 1*3#*G"I"$/:'1_)'(10*!50)_l:0:`sudoku.txt</tt></pre>
++/(+/100 10 1*3#*G"I"$/:'1_)'(10*!50)_l:0:`sudoku.txt</code></pre>
 </div></div>
 <div class="paragraph"><p>by Arthur Whitney (via VrAbi on projecteuler)</p></div>
 </div>
@@ -13918,11 +14069,11 @@ Syntax "words" user extensible
 compilation state up until the following ; (semi-colon)</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>  : HELLO  ( -- )  CR ." Hello, world!" ; HELLO
+<pre><code>  : HELLO  ( -- )  CR ." Hello, world!" ; HELLO
   Hello, world!
   : X DUP 1+ . . ;
   10 X
-  11 10</tt></pre>
+  11 10</code></pre>
 </div></div>
 </div>
 </div>
@@ -13952,20 +14103,61 @@ Portable Assembler
 <h1 id="_c_colon">C Colon</h1>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt><span style="font-weight: bold"><span style="color: #000080"> #include</span></span> <span style="color: #FF0000">&lt;stdio.h&gt;</span>
  <span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span> <span style="color: #990000">(</span><span style="color: #009900">int</span> argc<span style="color: #990000">,</span> <span style="color: #009900">char</span> <span style="color: #990000">**</span>argv<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
    <span style="color: #009900">int</span> a<span style="color: #990000">=</span><span style="color: #993399">0</span><span style="color: #990000">,</span>b<span style="color: #990000">=</span><span style="color: #993399">0</span><span style="color: #990000">;</span>
-   argc <span style="color: #990000">&lt;</span> <span style="color: #993399">3</span> <span style="color: #990000">?</span> <span style="color: #993399">1</span> <span style="color: #990000">:</span> <span style="color: #993399">0</span><span style="color: #990000">;</span>
+   label<span style="color: #990000">:</span> argc <span style="color: #990000">&lt;</span> <span style="color: #993399">3</span> <span style="color: #990000">?</span> <span style="color: #993399">1</span> <span style="color: #990000">:</span> <span style="color: #993399">0</span><span style="color: #990000">;</span>
    <span style="font-weight: bold"><span style="color: #0000FF">switch</span></span> <span style="color: #990000">(</span>argc<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
-     <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">1</span><span style="color: #990000">:</span> a<span style="color: #990000">++;</span>
+     <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">1</span><span style="color: #990000">:</span> a<span style="color: #990000">++;</span> <span style="font-weight: bold"><span style="color: #000000">printf</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"%d %s</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">,</span> a<span style="color: #990000">,</span> argv<span style="color: #990000">[</span><span style="color: #993399">0</span><span style="color: #990000">]);</span>
      <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">2</span><span style="color: #990000">:</span> b<span style="color: #990000">++;</span> <span style="font-weight: bold"><span style="color: #0000FF">break</span></span><span style="color: #990000">;</span>
      <span style="font-weight: bold"><span style="color: #0000FF">default</span></span><span style="color: #990000">:</span>  a<span style="color: #990000">++;</span>
    <span style="color: #FF0000">}</span>
-   label<span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">goto</span></span> label<span style="color: #990000">;</span>
+   <span style="font-weight: bold"><span style="color: #0000FF">goto</span></span> label<span style="color: #990000">;</span>
+ <span style="color: #FF0000">}</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect1 slide">
+<h1 id="_c_colon_digraphs">C Colon Digraphs</h1>
+<div class="sectionbody" style="max-width:45em">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt> <span style="color: #990000">%:</span>include <span style="color: #990000">&lt;</span>stdio<span style="color: #990000">.</span>h<span style="color: #990000">&gt;</span>
+ <span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span> <span style="color: #990000">(</span><span style="color: #009900">int</span> argc<span style="color: #990000">,</span> <span style="color: #009900">char</span> <span style="color: #990000">**</span>argv<span style="color: #990000">)</span> <span style="color: #990000">&lt;%</span>
+   <span style="color: #009900">int</span> a<span style="color: #990000">=</span><span style="color: #993399">0</span><span style="color: #990000">,</span>b<span style="color: #990000">=</span><span style="color: #993399">0</span><span style="color: #990000">;</span>
+   label<span style="color: #990000">:</span> argc <span style="color: #990000">&lt;</span> <span style="color: #993399">3</span> <span style="color: #990000">?</span> <span style="color: #993399">1</span> <span style="color: #990000">:</span> <span style="color: #993399">0</span><span style="color: #990000">;</span>
+   <span style="font-weight: bold"><span style="color: #0000FF">switch</span></span> <span style="color: #990000">(</span>argc<span style="color: #990000">)</span> <span style="color: #990000">&lt;%</span>
+     <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">1</span><span style="color: #990000">:</span> a<span style="color: #990000">++;</span> <span style="font-weight: bold"><span style="color: #000000">printf</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"%d %s</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">,</span> a<span style="color: #990000">,</span> argv<span style="color: #990000">&lt;:</span><span style="color: #993399">0</span><span style="color: #990000">:&gt;);</span>
+     <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">2</span><span style="color: #990000">:</span> b<span style="color: #990000">++;</span> <span style="font-weight: bold"><span style="color: #0000FF">break</span></span><span style="color: #990000">;</span>
+     <span style="font-weight: bold"><span style="color: #0000FF">default</span></span><span style="color: #990000">:</span>  a<span style="color: #990000">++;</span>
+   <span style="color: #990000">%&gt;</span>
+   <span style="font-weight: bold"><span style="color: #0000FF">goto</span></span> label<span style="color: #990000">;</span>
+ <span style="color: #990000">%&gt;</span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect1 slide">
+<h1 id="_c_colon_mayhem">C Colon Mayhem</h1>
+<div class="sectionbody" style="max-width:45em">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080"> #include</span></span> <span style="color: #FF0000">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold"><span style="color: #000080"> #define</span></span> <span style="font-weight: bold"><span style="color: #000000">prime</span></span><span style="color: #990000">(</span>x<span style="color: #990000">)</span> <span style="color: #993399">0</span> <span style="font-style: italic"><span style="color: #9A1900">// todo</span></span>
+ <span style="color: #009900">int</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span> <span style="color: #990000">(</span><span style="color: #009900">int</span> x<span style="color: #990000">,</span> <span style="color: #009900">char</span> <span style="color: #990000">**</span>argv<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+   <span style="font-weight: bold"><span style="color: #0000FF">switch</span></span> <span style="color: #990000">(</span>x<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+<span style="font-weight: bold"><span style="color: #008080">     default:</span></span>
+     <span style="font-weight: bold"><span style="color: #0000FF">if</span></span> <span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #000000">prime</span></span><span style="color: #990000">(</span>x<span style="color: #990000">))</span>
+       <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">4</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">6</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">8</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">9</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #000000">printf</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"not "</span><span style="color: #990000">);</span>
+     <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">2</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">3</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">5</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #0000FF">case</span></span> <span style="color: #993399">7</span><span style="color: #990000">:</span> <span style="font-weight: bold"><span style="color: #000000">printf</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"prime</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span><span style="color: #990000">);</span>
+   <span style="color: #FF0000">}</span>
  <span style="color: #FF0000">}</span></tt></pre></div></div>
 </div>
 </div>
@@ -14008,7 +14200,8 @@ Go - as a counter-point
 </ul>
 <div class="imageblock" style="text-align:center;">
 <div class="content">
-<img alt="" src="data:image/jpg;base64,
+<img alt=""
+src="data:image/jpeg;base64,
 /9j/4AAQSkZJRgABAQEASABIAAD/4QqpRXhpZgAATU0AKgAAAAgABwEPAAIAAAAESFRDAAEQAAIA
 AAALAAAAYgEaAAUAAAABAAAAbgEbAAUAAAABAAAAdgEoAAMAAAABAAIAAAITAAMAAAABAAEAAIdp
 AAQAAAABAAAAfgAAAUJIVEMgRGVzaXJlAAAAAABIAAAAAQAAAEgAAAABAAqIJwADAAAAAQBkAACQ
@@ -14448,18 +14641,18 @@ Dynamic and reflective
 <div class="paragraph"><p>Assignment</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>vowels := 'aeiou'</tt></pre>
+<pre><code>vowels := 'aeiou'</code></pre>
 </div></div>
 <div class="paragraph"><p>Chained binary messages ("keyword messages")</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>'hello world' indexOf: $o startingAt: 6</tt></pre>
+<pre><code>'hello world' indexOf: $o startingAt: 6</code></pre>
 </div></div>
 <div class="paragraph"><p>Code blocks:</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt> [ :params | &lt;message-expressions&gt; ]
- [:x | x + 1] value: 3</tt></pre>
+<pre><code> [ :params | &lt;message-expressions&gt; ]
+ [:x | x + 1] value: 3</code></pre>
 </div></div>
 </div>
 </div>
@@ -14469,11 +14662,11 @@ Dynamic and reflective
 <div class="paragraph"><p>Classes:</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>  Object subclass: #MessagePublisher
+<pre><code>  Object subclass: #MessagePublisher
     instanceVariableNames: ''
     classVariableNames: ''
     poolDictionaries: ''
-    category: 'Smalltalk Examples'</tt></pre>
+    category: 'Smalltalk Examples'</code></pre>
 </div></div>
 </div>
 </div>
@@ -14530,7 +14723,7 @@ All of C&#8217;s uses
 </li>
 </ul>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -14544,7 +14737,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sectionbody" style="max-width:45em">
 <div class="paragraph"><p>Access control, scoping operator</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -14563,7 +14756,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sectionbody" style="max-width:45em">
 <div class="paragraph"><p>Inheritance access mode</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -14582,7 +14775,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sectionbody" style="max-width:45em">
 <div class="paragraph"><p>Templates and Namespaces</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -14632,7 +14825,7 @@ C-like switch
 </li>
 <li>
 <span>
-C-like <tt>? :</tt>
+C-like <code>? :</code>
 </span>
 </li>
 <li>
@@ -14643,7 +14836,7 @@ C/Perl-like control labels: for break and continue
 </ul>
 <div class="paragraph"><p>Enhanced for loop over collections (&gt; J2SE 5.0)</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -14695,12 +14888,12 @@ Interfaces and embedding (vs inheritance)
 <div class="paragraph"><p>Short declaration, less type typing</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>t := new(T) // versus var t *T = new(T)</tt></pre>
+<pre><code>t := new(T) // versus var t *T = new(T)</code></pre>
 </div></div>
 <div class="paragraph"><p>Map collection</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>m := map[string]int{"one":1 , "two":2}</tt></pre>
+<pre><code>m := map[string]int{"one":1 , "two":2}</code></pre>
 </div></div>
 </div>
 </div>
@@ -14710,15 +14903,15 @@ Interfaces and embedding (vs inheritance)
 <div class="paragraph"><p>Array slice interface, less pointer arithmetic</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>a[1:3] a[2:] a[:3] a[:]</tt></pre>
+<pre><code>a[1:3] a[2:] a[:3] a[:]</code></pre>
 </div></div>
 <div class="paragraph"><p>"select" statement for concurrent communication</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>select {
+<pre><code>select {
   case i1 = &lt;-c1:
     print("received ", i1, " from c1\n")
-}</tt></pre>
+}</code></pre>
 </div></div>
 </div>
 </div>
@@ -14727,7 +14920,8 @@ Interfaces and embedding (vs inheritance)
 <div class="sectionbody" style="max-width:45em">
 <div class="imageblock" style="float:right;">
 <div class="content">
-<img alt="" src="data:image/jpg;base64,
+<img alt=""
+src="data:image/jpeg;base64,
 /9j/4AAQSkZJRgABAQEASABIAAD/4RUkRXhpZgAATU0AKgAAAAgABwEPAAIAAAAESFRDAAEQAAIA
 AAALAAAAYgEaAAUAAAABAAAAbgEbAAUAAAABAAAAdgEoAAMAAAABAAIAAAITAAMAAAABAAEAAIdp
 AAQAAAABAAAAfgAAAUJIVEMgRGVzaXJlAAAAAABIAAAAAQAAAEgAAAABAAqIJwADAAAAAQBkAACQ
@@ -15820,7 +16014,7 @@ CPAN culture
 <h1 id="_perl5_colon">Perl5 Colon</h1>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -15843,12 +16037,12 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>perlvar</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>$:
+<pre><code>$:
    The current set of characters after which a string
    may be broken to fill continuation fields (starting
    with ^) in a format. Default is " \n-", to break on
    whitespace or hyphens.
-   (Mnemonic: a "colon" in poetry is a part of a line.)</tt></pre>
+   (Mnemonic: a "colon" in poetry is a part of a line.)</code></pre>
 </div></div>
 <div class="paragraph"><p>Wha..?</p></div>
 </div>
@@ -15884,7 +16078,7 @@ TIOWTDI
 <h1 id="_python_colon">Python Colon</h1>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -15941,7 +16135,7 @@ Trendy
 <h1 id="_ruby_colon">Ruby Colon</h1>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -15992,13 +16186,13 @@ Badly named
 <div class="paragraph"><p>Associative arrays, hence objects, hence JSON</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>{ "k1": "v1", "k2" : 2, "k3" : function () { "v3" } }</tt></pre>
+<pre><code>{ "k1": "v1", "k2" : 2, "k3" : function () { "v3" } }</code></pre>
 </div></div>
 <div class="paragraph"><p>C/Java/Perl compatible mistakes</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>? :
-switch (e) { case v1: x++; break; default: y++ }</tt></pre>
+<pre><code>? :
+switch (e) { case v1: x++; break; default: y++ }</code></pre>
 </div></div>
 </div>
 </div>
@@ -16046,7 +16240,7 @@ DIY encapsulation
 <div class="paragraph"><p>The colon syntax is used for defining methods, that is,
 functions that have an implicit extra parameter self.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -16061,11 +16255,6 @@ t<span style="color: #990000">.</span>a<span style="color: #990000">.</span>b<sp
 <ul class="">
 <li>
 <span>
-Lisp/Scheme/Clojure
-</span>
-</li>
-<li>
-<span>
 Haskell (ML/OCaml)
 </span>
 </li>
@@ -16076,13 +16265,19 @@ Scala
 </li>
 <li>
 <span>
+Lisp/Scheme/Clojure
+</span>
+</li>
+<li>
+<span>
 Erlang
 </span>
 </li>
 </ul>
 <div class="imageblock" style="text-align:center;">
 <div class="content">
-<img alt="" src="data:image/png;base64,
+<img alt=""
+src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAfQAAACKCAYAAABcibiPAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
 AK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAZiS0dE
 AP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAl2cEFnAAAB9AAAAIoA/MqdcwAAgABJ
@@ -17742,98 +17937,6 @@ VDEwOjQ5OjM5KzExOjAwC13NgwAAAABJRU5ErkJggg==" />
 </div>
 </div>
 <div class="sect1 slide">
-<h1 id="_lisp_scheme_clojure">Lisp/Scheme/Clojure</h1>
-<div class="sectionbody" style="max-width:45em">
-<ul class="">
-<li>
-<span>
-Lisp processing
-</span>
-</li>
-<li>
-<span>
-Encouraging a functional style
-</span>
-</li>
-<li>
-<span>
-Anti-syntax s-expressions
-</span>
-</li>
-<li>
-<span>
-Enabling powerful macros
-</span>
-</li>
-<li>
-<span>
-Futuristic old school language
-</span>
-</li>
-<li>
-<span>
-Dynamic
-</span>
-</li>
-<li>
-<span>
-Garbage collected
-</span>
-</li>
-<li>
-<span>
-Scheme tidies and tightens
-</span>
-</li>
-<li>
-<span>
-Clojure - Lisp on JVM with handy data-types
-</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect1 slide">
-<h1 id="_lisp_scheme_colon">Lisp/Scheme Colon</h1>
-<div class="sectionbody" style="max-width:45em">
-<div class="paragraph"><p>"keyword symbols", self-quoting and evaluate to themselves</p></div>
-<div class="listingblock">
-<div class="content">
-<pre><tt>:eof
-(defstruct (point (:conc-name nil))
-  x y z)
-(make-point :x 0 :y 0 :z 200)
-;; scheme seems similar</tt></pre>
-</div></div>
-</div>
-</div>
-<div class="sect1 slide">
-<h1 id="_clojure_colon">Clojure Colon</h1>
-<div class="sectionbody" style="max-width:45em">
-<div class="paragraph"><p>Maps</p></div>
-<div class="listingblock">
-<div class="content">
-<pre><tt>{:a 1 :b 2}</tt></pre>
-</div></div>
-<div class="paragraph"><p>Sets
- #{:a :b :c}</p></div>
-<div class="dlist"><dl class="">
-<dt class="hdlist1">
-Keywords - symbols starting with : or 
-</dt>
-<dd>
-</dd>
-</dl></div>
-<div class="listingblock">
-<div class="content">
-<pre><tt>  user&gt; :foo
-  :foo
-  user&gt; ::foo
-  :user/foo</tt></pre>
-</div></div>
-</div>
-</div>
-<div class="sect1 slide">
 <h1 id="_haskell">Haskell</h1>
 <div class="sectionbody" style="max-width:45em">
 <ul class="">
@@ -17865,14 +17968,14 @@ Strong, inferred typing
 <div class="sectionbody" style="max-width:45em">
 <div class="paragraph"><p>Cons (:) for list construction and matching</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt>  <span style="color: #FF0000">'a'</span><span style="color: #990000">:</span><span style="color: #FF0000">'b'</span><span style="color: #990000">:</span><span style="color: #FF0000">'c'</span><span style="color: #990000">:[]</span> <span style="color: #990000">==</span> <span style="color: #FF0000">"abc"</span></tt></pre></div></div>
 <div class="paragraph"><p>Type annotations</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -17885,7 +17988,7 @@ http://www.gnu.org/software/src-highlite -->
 <h1 id="_haskell_ml_ocaml_colon">Haskell (ML/OCaml) Colon</h1>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -17895,9 +17998,9 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>Custom operators from hoogle</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>(:+) (:&lt;) (:&gt;) (:=) (~:)</tt></pre>
+<pre><code>(:+) (:&lt;) (:&gt;) (:=) (~:)</code></pre>
 </div></div>
-<div class="paragraph"><p>ML/OCaml swap them - <tt>:</tt> for types and <tt>::</tt> for cons</p></div>
+<div class="paragraph"><p>ML/OCaml swap them - <code>:</code> for types and <code>::</code> for cons</p></div>
 </div>
 </div>
 <div class="sect1 slide">
@@ -17947,13 +18050,152 @@ Helps with concurrency
 <div class="paragraph"><p>Similar to the functional side of the family, adding
 some typing complications from OO.</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt> <span style="font-weight: bold"><span style="color: #0000FF">::</span></span>       <span style="font-style: italic"><span style="color: #9A1900">/* List Cons (like ML/OCaml) */</span></span>
+ <span style="font-weight: bold"><span style="color: #0000FF">::</span></span>       <span style="font-style: italic"><span style="color: #9A1900">/* A class also, apparently */</span></span>
  <span style="font-weight: bold"><span style="color: #0000FF">:</span></span> Type   <span style="font-style: italic"><span style="color: #9A1900">/* Type Annotation */</span></span>
  <span style="font-weight: bold"><span style="color: #0000FF">&lt;:</span></span> <span style="font-weight: bold"><span style="color: #0000FF">&gt;:</span></span>    <span style="font-style: italic"><span style="color: #9A1900">/* Covariant and Contravariant types */</span></span></tt></pre></div></div>
+</div>
+</div>
+<div class="sect1 slide">
+<h1 id="_scala_colon_details">Scala Colon - Details</h1>
+<div class="sectionbody" style="max-width:45em">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt> <span style="color: #993399">1</span> <span style="font-weight: bold"><span style="color: #0000FF">::</span></span> <span style="color: #993399">2</span> <span style="font-weight: bold"><span style="color: #0000FF">::</span></span> <span style="color: #993399">3</span> <span style="font-weight: bold"><span style="color: #0000FF">::</span></span> <span style="color: #009900">Nil</span> <span style="font-weight: bold"><span style="color: #0000FF">==</span></span> <span style="font-weight: bold"><span style="color: #000000">List</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">,</span> <span style="color: #993399">2</span><span style="color: #990000">,</span> <span style="color: #993399">3</span><span style="color: #990000">)</span>
+ <span style="color: #993399">1</span><span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #0000FF">::</span></span><span style="color: #990000">(</span><span style="color: #993399">2</span><span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #0000FF">::</span></span><span style="color: #990000">(</span><span style="color: #993399">3</span><span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #0000FF">::</span></span><span style="color: #990000">(</span><span style="color: #009900">Nil</span><span style="color: #990000">)))</span> <span style="font-style: italic"><span style="color: #9A1900">// in method calls</span></span></tt></pre></div></div>
+<div class="paragraph"><p>Operators ending in a colon ‘:’ are right-associative.
+All other operators are left- associative.</p></div>
+<div class="paragraph"><p>Operators precedence is based on the first character,
+where <em>:</em> gets it&#8217;s own level</p></div>
+</div>
+</div>
+<div class="sect1 slide">
+<h1 id="_scala_operators">Scala Operators</h1>
+<div class="sectionbody" style="max-width:45em">
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt> <span style="color: #993399">1</span> <span style="color: #990000">+</span><span style="font-weight: bold"><span style="color: #0000FF">:</span></span> <span style="font-weight: bold"><span style="color: #000000">List</span></span><span style="color: #990000">(</span><span style="color: #993399">2</span><span style="color: #990000">)</span> <span style="font-weight: bold"><span style="color: #0000FF">:</span></span><span style="color: #990000">+</span> <span style="color: #993399">3</span>   <span style="font-style: italic"><span style="color: #9A1900">// add to collection</span></span>
+ <span style="font-weight: bold"><span style="color: #000000">List</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">)</span> <span style="font-weight: bold"><span style="color: #0000FF">:::</span></span> <span style="font-weight: bold"><span style="color: #000000">List</span></span><span style="color: #990000">(</span><span style="color: #993399">2</span><span style="color: #990000">)</span> <span style="font-style: italic"><span style="color: #9A1900">// concat collections</span></span>
+ <span style="color: #990000">/</span><span style="font-weight: bold"><span style="color: #0000FF">:</span></span> <span style="font-weight: bold"><span style="color: #0000FF">:</span></span><span style="color: #990000">\</span> <span style="color: #990000">/</span><span style="font-weight: bold"><span style="color: #0000FF">:</span></span><span style="color: #990000">\</span>  <span style="font-style: italic"><span style="color: #9A1900">// colonic folds</span></span>
+ <span style="font-weight: bold"><span style="color: #0000FF">:</span></span><span style="color: #990000">/</span><span style="font-weight: bold"><span style="color: #0000FF">:</span></span>        <span style="font-style: italic"><span style="color: #9A1900">// Document method</span></span>
+ <span style="font-weight: bold"><span style="color: #0000FF">=:=</span></span> <span style="font-weight: bold"><span style="color: #0000FF">&lt;:</span></span><span style="color: #990000">&lt;</span>    <span style="font-style: italic"><span style="color: #9A1900">// type constraints</span></span>
+ <span style="color: #990000">?</span><span style="font-weight: bold"><span style="color: #0000FF">:</span></span>         <span style="font-style: italic"><span style="color: #9A1900">// who knows?</span></span></tt></pre></div></div>
+<div class="paragraph"><p>See ScalaZ and other libraries for more</p></div>
+</div>
+</div>
+<div class="sect1 slide">
+<h1 id="_lisp_scheme_clojure">Lisp/Scheme/Clojure</h1>
+<div class="sectionbody" style="max-width:45em">
+<ul class="">
+<li>
+<span>
+Lisp processing
+</span>
+</li>
+<li>
+<span>
+Encouraging a functional style
+</span>
+</li>
+<li>
+<span>
+Anti-syntax s-expressions
+</span>
+</li>
+<li>
+<span>
+Enabling powerful macros
+</span>
+</li>
+<li>
+<span>
+Futuristic old school language
+</span>
+</li>
+<li>
+<span>
+Dynamic
+</span>
+</li>
+<li>
+<span>
+Garbage collected
+</span>
+</li>
+<li>
+<span>
+Scheme tidies and tightens
+</span>
+</li>
+<li>
+<span>
+Clojure - Lisp on JVM with handy data-types
+</span>
+</li>
+<li>
+<span>
+Adds some of that new-fangled syntax
+</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect1 slide">
+<h1 id="_lisp_scheme_colon">Lisp/Scheme Colon</h1>
+<div class="sectionbody" style="max-width:45em">
+<div class="paragraph"><p>"keyword symbols", self-quoting and evaluate to themselves</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>:eof
+(defstruct (point (:conc-name nil))
+  x y z)
+(make-point :x 0 :y 0 :z 200)
+;; scheme seems similar</code></pre>
+</div></div>
+</div>
+</div>
+<div class="sect1 slide">
+<h1 id="_clojure_colon">Clojure Colon</h1>
+<div class="sectionbody" style="max-width:45em">
+<div class="paragraph"><p>Maps</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>{:a 1 :b 2}</code></pre>
+</div></div>
+<div class="paragraph"><p>Sets
+ #{:a :b :c}</p></div>
+<div class="dlist"><dl class="">
+<dt class="hdlist1">
+Keywords - symbols starting with : or 
+</dt>
+<dd>
+</dd>
+</dl></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>  user&gt; :foo
+  :foo
+  user&gt; ::foo
+  :user/foo</code></pre>
+</div></div>
+</div>
+</div>
+<div class="sect1 slide">
+<h1 id="_clojure_colon_2">Clojure Colon</h1>
+<div class="sectionbody" style="max-width:45em">
+<div class="paragraph"><p>Three ways to look up a key in a map:</p></div>
+<div class="listingblock">
+<div class="content"></div></div>
 </div>
 </div>
 <div class="sect1 slide">
@@ -18008,11 +18250,11 @@ Upgrade without downtime
 <div class="paragraph"><p>Module qualified function names (common)</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>module:function()</tt></pre>
+<pre><code>module:function()</code></pre>
 </div></div>
 <div class="paragraph"><p>Hot-swapping</p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -18033,7 +18275,7 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sectionbody" style="max-width:45em">
 <div class="paragraph"><p><strong>Prolog Colon</strong></p></div>
 <div class="listingblock">
-<div class="content"><!-- Generator: GNU source-highlight 3.1.3
+<div class="content"><!-- Generator: GNU source-highlight 3.1.5
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -18046,7 +18288,8 @@ http://www.gnu.org/software/src-highlite -->
 <div class="sectionbody" style="max-width:45em">
 <div class="imageblock" style="float:right;">
 <div class="content">
-<img alt="" src="data:image/png;base64,
+<img alt=""
+src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAZAAAAEkCAYAAAAB5GevAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
 AK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAZiS0dE
 AAAAAAAA+UO7fwAAAAlwSFlzAAAN1wAADdcBQiibeAAAAAl2cEFnAAABkAAAASQAXukrbwAAgABJ
@@ -18756,7 +18999,7 @@ Theoretical answers to questions most people can&#8217;t ask
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt> LABEL: next, redo, continue, goto LABEL;
+<pre><code> LABEL: next, redo, continue, goto LABEL;
 
  :: # sigil for package/module/class/role/type/grammar/...
  $Foo::Bar::baz      # compound identifiers separated by ::
@@ -18768,7 +19011,7 @@ Theoretical answers to questions most people can&#8217;t ask
 
  $:x # twigil, self-declared formal named parameter
  { say "$^a $:b" } # -&gt; $a, :$b { say "$a $b" }
-                   # { :::x } a named package param?</tt></pre>
+                   # { :::x } a named package param?</code></pre>
 </div></div>
 </div>
 </div>
@@ -18777,7 +19020,7 @@ Theoretical answers to questions most people can&#8217;t ask
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt> :adverb, :p, :kv, :a($x), map:{ .say }, q:x 'ls',
+<pre><code> :adverb, :p, :kv, :a($x), map:{ .say }, q:x 'ls',
  %a{b}:exists, s:i:g/this/that/
 
  &lt;foo: 'foo', $bar, 42&gt; # means &lt;foo('foo', $bar, 42)&gt;
@@ -18788,7 +19031,7 @@ Theoretical answers to questions most people can&#8217;t ask
  ::   # Fails entire group if previous atom is backtracked
  ::&gt;  # Discard saved choices in inner alternation "then"
  ::&gt;: # ::&gt; and : together
- :::  # Fails entire rule if previous atom is backtracked</tt></pre>
+ :::  # Fails entire rule if previous atom is backtracked</code></pre>
 </div></div>
 </div>
 </div>
@@ -18797,14 +19040,14 @@ Theoretical answers to questions most people can&#8217;t ask
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt> # alternate radixes, radii?, radixen?... alternate bases
+<pre><code> # alternate radixes, radii?, radixen?... alternate bases
  :10<b>&lt;42&gt;</b> :16&lt;DEAD_BEEF&gt; :60[12,34,56] :2($x)
 
  given $file_handle {
    when :r &amp; :w &amp; :x {...}
    when :!w | :!x    {...}
    when *            {...}
- }</tt></pre>
+ }</code></pre>
 </div></div>
 </div>
 </div>
@@ -18813,23 +19056,23 @@ Theoretical answers to questions most people can&#8217;t ask
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt>:(...) # Signature literal, eg. :(Dog $self:)
+<pre><code>:(...) # Signature literal, eg. :(Dog $self:)
 :=     # Run-time binding $sig := $capture like P5 *A = ..
        # := and .assuming(...) for currying
        # Also used in rules for capturing
 ::=    # Bind and make read-only, like default sub args
 =:=    # Container identity same binding
-       # cf. eq == === eqv eqv()</tt></pre>
+       # cf. eq == === eqv eqv()</code></pre>
 </div></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt># Match up named pair values in binding assignment
+<pre><code># Match up named pair values in binding assignment
 :(:who($name), :why($reason))
    := (why =&gt; $because, who =&gt; "me");
 my ::MySig ::= :(Int, Num)
    # compile time bind a Signature to a lexical var?
 &amp;foo:(Int,Num) # disambiguate which foo of multi
-&amp;div:(Int, Int --&gt; Int)</tt></pre>
+&amp;div:(Int, Int --&gt; Int)</code></pre>
 </div></div>
 </div>
 </div>
@@ -18838,15 +19081,15 @@ my ::MySig ::= :(Int, Num)
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt>sub matchedset (Dog ::T $fido, T $spot) {...} # matching type
-sub matchedset (Dog ::T $fido, Dog $spot where T) {...}</tt></pre>
+<pre><code>sub matchedset (Dog ::T $fido, T $spot) {...} # matching type
+sub matchedset (Dog ::T $fido, Dog $spot where T) {...}</code></pre>
 </div></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt># sub traits
+<pre><code># sub traits
 sub x() is ::Foo[...] # definitely a parameterized typename
 sub x() is :Foo[...]  # definitely a pair with a list
-sub x() is Foo[...]   # depends on whether Foo is a predeclared type</tt></pre>
+sub x() is Foo[...]   # depends on whether Foo is a predeclared type</code></pre>
 </div></div>
 </div>
 </div>
@@ -18855,7 +19098,7 @@ sub x() is Foo[...]   # depends on whether Foo is a predeclared type</tt></pre>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt> infix:&lt;+&gt;    # the official name of the operator in $a + $b
+<pre><code> infix:&lt;+&gt;    # the official name of the operator in $a + $b
  prefix:&lt;+&gt;   # the official name of the operator in +$a
  postfix:&lt;--&gt; # the official name of the operator in $a--
  circumfix:«&lt;!-- --&gt;»
@@ -18870,7 +19113,7 @@ sub x() is Foo[...]   # depends on whether Foo is a predeclared type</tt></pre>
  method set_name ($_: $newname) {...}
  set_name $obj: "Sam";
 
- [&lt;&lt;R!=:=&gt;&gt;] # reducing-reverse-negated-hyper-equivalence?</tt></pre>
+ [&lt;&lt;R!=:=&gt;&gt;] # reducing-reverse-negated-hyper-equivalence?</code></pre>
 </div></div>
 </div>
 </div>
@@ -18879,7 +19122,7 @@ sub x() is Foo[...]   # depends on whether Foo is a predeclared type</tt></pre>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt>Fat arrow           Adverbial pair  Paren form
+<pre><code>Fat arrow           Adverbial pair  Paren form
 =========           ==============  ==========
 a =&gt; True           :a
 a =&gt; False          :!a
@@ -18895,7 +19138,7 @@ a =&gt; @a             :@a
 a =&gt; %a             :%a
 a =&gt; &amp;a             :&amp;a
 a =&gt; @$$a           :@$$a (etc.)
-a =&gt; %foo&lt;a&gt;        %foo&lt;a&gt;:p</tt></pre>
+a =&gt; %foo&lt;a&gt;        %foo&lt;a&gt;:p</code></pre>
 </div></div>
 </div>
 </div>
@@ -18904,7 +19147,7 @@ a =&gt; %foo&lt;a&gt;        %foo&lt;a&gt;:p</tt></pre>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt>Simple pair         DIFFERS from    which means
+<pre><code>Simple pair         DIFFERS from    which means
 ===========         ============    ===========
 2 =&gt; <b>&lt;101010&gt;</b>       :2<b>&lt;101010&gt;</b>      radix literal 0b101010
 8 =&gt; <b>&lt;123&gt;</b>          :8<b>&lt;123&gt;</b>         radix literal 0o123
@@ -18915,7 +19158,7 @@ a =&gt; %foo&lt;a&gt;        %foo&lt;a&gt;:p</tt></pre>
 '' =&gt; &lt;x&gt;           :&lt;x&gt;            name extension
 '' =&gt; «x»           :«x»            name extension
 '' =&gt; [$x,$y]       :[$x,$y]        name extension
-'' =&gt; { .say }      :{ .say }       adverbial block</tt></pre>
+'' =&gt; { .say }      :{ .say }       adverbial block</code></pre>
 </div></div>
 </div>
 </div>
@@ -18924,7 +19167,7 @@ a =&gt; %foo&lt;a&gt;        %foo&lt;a&gt;:p</tt></pre>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt>Short Long        Meaning
+<pre><code>Short Long        Meaning
 ===== ====        =======
 :x    :exec       Execute as command and return results
 :w    :words      Split result on words (no protection) :ww
@@ -18939,7 +19182,7 @@ a =&gt; %foo&lt;a&gt;        %foo&lt;a&gt;:p</tt></pre>
 :subst            Parse as substitution
 :trans            Parse as transliteration
 :code             Quasiquoting
-:p    :path       Return a Path object (see S16 for more)</tt></pre>
+:p    :path       Return a Path object (see S16 for more)</code></pre>
 </div></div>
 </div>
 </div>
@@ -18948,7 +19191,7 @@ a =&gt; %foo&lt;a&gt;        %foo&lt;a&gt;:p</tt></pre>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt>:b :basechar        Match base char ignoring accents, etc
+<pre><code>:b :basechar        Match base char ignoring accents, etc
 :bytes              Match individual bytes
 :c, :continue       Start scanning from string's .pos
 :codes              Match individual codepoints
@@ -18964,7 +19207,7 @@ a =&gt; %foo&lt;a&gt;        %foo&lt;a&gt;:p</tt></pre>
 :perl5              Use Perl 5 syntax for regex
 :ov, :overlap       Match at all possible  positions
 :rw                 Claim string for modification
-:s, :sigspace       Replaces literal whitespace by \s &lt;?ws&gt;</tt></pre>
+:s, :sigspace       Replaces literal whitespace by \s &lt;?ws&gt;</code></pre>
 </div></div>
 </div>
 </div>
@@ -18973,7 +19216,7 @@ a =&gt; %foo&lt;a&gt;        %foo&lt;a&gt;:p</tt></pre>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt>foo:                #   label
+<pre><code>foo:                #   label
 foo: bar:           #   two labels in a row, okay
 .foo: 1             # $_.foo: 1
 .$foo: 1            # $_.$foo: 1
@@ -18982,7 +19225,7 @@ foo $bar: 1         # $bar.foo(1)
 foo (bar()): 1      # bar().foo(1)
 foo .bar:           # foo(.bar:)
 foo bar baz: 1      # foo(baz.bar(1))
-foo (bar baz): 1    # bar(baz()).foo(1)</tt></pre>
+foo (bar baz): 1    # bar(baz()).foo(1)</code></pre>
 </div></div>
 </div>
 </div>
@@ -18991,7 +19234,7 @@ foo (bar baz): 1    # bar(baz()).foo(1)</tt></pre>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt>foo $obj.bar: 1,2,3     # foo($obj.bar(1,2,3))
+<pre><code>foo $obj.bar: 1,2,3     # foo($obj.bar(1,2,3))
 foo $obj.bar(): 1,2,3   # foo($obj.bar(1,2,3))
 foo $obj.bar(1): 2,3    # foo($obj.bar(1,2,3))
 foo $obj.bar(1,2): 3    # foo($obj.bar(1,2,3))
@@ -19006,7 +19249,7 @@ foo $obj.bar :baz       # adverb, foo($obj.bar(:baz))
 foo ($obj.bar) :baz     # adverb, foo($obj.bar, :baz)
 foo $obj.bar:baz        # ext. id., foo( $obj.'bar:baz' )
 foo $obj.infix:&lt;+&gt;      # ext. id., foo( $obj.'infix:&lt;+&gt;' )
-foo: 1,2,3              # label statement start, else infix</tt></pre>
+foo: 1,2,3              # label statement start, else infix</code></pre>
 </div></div>
 </div>
 </div>
@@ -19058,7 +19301,8 @@ Gain a little information with very little effort
 </ul>
 <div class="imageblock" style="text-align:center;">
 <div class="content">
-<img alt="" src="data:image/jpg;base64,
+<img alt=""
+src="data:image/jpeg;base64,
 /9j/4AAQSkZJRgABAQEASABIAAD/4Qp5RXhpZgAATU0AKgAAAAgABwEPAAIAAAAESFRDAAEQAAIA
 AAALAAAAYgEaAAUAAAABAAAAbgEbAAUAAAABAAAAdgEoAAMAAAABAAIAAAITAAMAAAABAAEAAIdp
 AAQAAAABAAAAfgAAAUJIVEMgRGVzaXJlAAAAAABIAAAAAQAAAEgAAAABAAqIJwADAAAAAQBkAACQ
@@ -19444,8 +19688,8 @@ MibkcGMieKZJn//Z" />
 <div class="paragraph"><p>How well does a colonoscopy measure a language?</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>                 Units     -10____-5____0____5____10
-Colonoscopy                                *</tt></pre>
+<pre><code>                 Units     -10____-5____0____5____10
+Colonoscopy                                *</code></pre>
 </div></div>
 </div>
 </div>
@@ -19455,15 +19699,16 @@ Colonoscopy                                *</tt></pre>
 <div class="paragraph"><p>How well does a colonoscopy measure a language?</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>                 Units     -10____-5____0____5____10
+<pre><code>                 Units     -10____-5____0____5____10
 Colonoscopy                                *
                                          ^
                                          |
-          Expectations -----------------/</tt></pre>
+          Expectations -----------------/</code></pre>
 </div></div>
 <div class="imageblock" style="text-align:center;">
 <div class="content">
-<img alt="" src="data:image/png;base64,
+<img alt=""
+src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAfQAAABtCAIAAADYqgTiAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
 AK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlz
 AAALEwAACxMBAJqcGAAAAAl2cEFnAAAB9AAAAG0A7fX4WAAAgABJREFUeNpU/Wmzbdl1HYiNMefa
@@ -20770,7 +21015,7 @@ zYMAAAAASUVORK5CYII=" />
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt>                 Units     -10____-5____0____5____10
+<pre><code>                 Units     -10____-5____0____5____10
 Colonoscopy                                *
 Rocks/Rules vs Sucks                     *
   (Lua and Perl 6 cheat)
@@ -20784,7 +21029,7 @@ Feature list                                  *
 Trendiness                              *
 Hello World                               *
 NWTDI                                    *
-                 Units     -10____-5____0____5____10</tt></pre>
+                 Units     -10____-5____0____5____10</code></pre>
 </div></div>
 </div>
 </div>
@@ -20793,7 +21038,7 @@ NWTDI                                    *
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
 <div class="content">
-<pre><tt>                 Units     -10____-5____0____5____10
+<pre><code>                 Units     -10____-5____0____5____10
 Colonoscopy                     |----------*-----|
 Rocks/Rules vs Sucks          |----------*-------|
   (Lua and Perl 6 cheat)
@@ -20807,7 +21052,7 @@ Feature list                        |---------*---|
 Trendiness                    |---------*-------|
 Hello World                          |----*----|
 NWTDI                               |----*----|
-                 Units     -10____-5____0____5____10</tt></pre>
+                 Units     -10____-5____0____5____10</code></pre>
 </div></div>
 </div>
 </div>
@@ -20819,7 +21064,8 @@ NWTDI                               |----*----|
 <div class="paragraph"><p>Tiny URL: <a href="http://tinyurl.com/colonoscopy-talk">http://tinyurl.com/colonoscopy-talk</a></p></div>
 <div class="imageblock" style="float:right;">
 <div class="content">
-<img alt="" src="data:image/png;base64,
+<img alt=""
+src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAATQAAAGQCAIAAACvbgswAAAABGdBTUEAALGPC/xhBQAAAAFzUkdC
 AK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlz
 AAALEwAACxMBAJqcGAAAAAl2cEFnAAABNAAAAZAAXM0TKwAAgABJREFUeNo8/VvPZt1yHYaNMarm
