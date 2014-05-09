@@ -190,13 +190,13 @@ compilation state up until the following ; (semi-colon)
  #include <stdio.h>
  int main (int argc, char **argv) {
    int a=0,b=0;
-   argc < 3 ? 1 : 0;
+   label: argc < 3 ? 1 : 0;
    switch (argc) {
-     case 1: a++;
+     case 1: a++; printf("%d %s\n", a, argv[0]);
      case 2: b++; break;
      default:  a++;
    }
-   label: goto label;
+   goto label;
  }
 -----------------------------------------------------
 
