@@ -217,6 +217,23 @@ compilation state up until the following ; (semi-colon)
  %>
 -----------------------------------------------------
 
+== C Colon Output ==
+
+----------------------------------------------------
+$ gcc eg.c -o eg
+$ ./eg | head
+1 ./eg
+2 ./eg
+3 ./eg
+4 ./eg
+5 ./eg
+6 ./eg
+7 ./eg
+8 ./eg
+9 ./eg
+10 ./eg
+----------------------------------------------------
+
 == C Colon Mayhem ==
 
 [source,c]
