@@ -559,6 +559,17 @@ Keywords - symbols starting with : or ::
   :user/foo
 ---------------------------
 
+== Clojure Colon ==
+
+Three ways to look up a key in a map:
+
+[source,clj]
+---------------------------------------------
+  (get { :key "value" } :key "default")
+  (:key { :key "value" })
+  ({ :key "value" } :key)
+---------------------------------------------
+
 == Haskell ==
 
 * Pure Functional Language
