@@ -1,0 +1,27 @@
+asciidoc --help syntax
+a2x -f pdf slidy-ex.txt
+acroread slidy-ex.pdf
+wkhtmltopdf -O Portrait -s A5 slidy.html slidy.pdf
+chromium-browser --app="file://$PWD/slides.html" --class=my-slides
+google-chrome --app="file://$PWD/slides.html" --class=my-slides
+
+pdfcrop --resolution 1024x768 output.pdf output-crop.pdf
+pdfcrop  --margins 10 --noclip --resolution 1024x768 output.pdf output-crop.pdf
+impressive -g 1024x768 ff2.pdf
+
+asciidoc -> slidy -> firefox pdf -> impressive
+                 \-> chrome --app
+
+# rotate content (landscape?)
+    pdftk in.pdf cat 1-endS output out.pdf
+
+for f in *.*; do echo mogrify -resize '320x320\>' $f ; done
+
+firefox's print to pdf w/ custom size 1, unicode
+../asciidoc-8.6.3/a2x.py --format chunked   slides.txt
+
+asciidoc --backend slidy slides.txt \
+ && ./split-slides.pl slides.html \
+ && wkhtmltopdf --page-width 252mm --page-height 178mm split.slides/s*html slides.pdf
+
+impressive -T 20 -B 20 -d 30:00 slides.pdf
