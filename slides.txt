@@ -512,63 +512,12 @@ functions that have an implicit extra parameter self.
 
 == Functional Languages ==
 
-  * Lisp/Scheme/Clojure
   * Haskell (ML/OCaml)
   * Scala
+  * Lisp/Scheme/Clojure
   * Erlang
 
 image::images/folds-colon.png["",align="center"]
-
-== Lisp/Scheme/Clojure ==
-
-* Lisp processing
-  * Encouraging a functional style
-* Anti-syntax s-expressions
-  * Enabling powerful macros
-* Futuristic old school language
-  * Dynamic
-  * Garbage collected
-* Scheme tidies and tightens
-* Clojure - Lisp on JVM with handy data-types
-
-== Lisp/Scheme Colon ==
-
-"keyword symbols", self-quoting and evaluate to themselves
-
- :eof
- (defstruct (point (:conc-name nil))
-   x y z)
- (make-point :x 0 :y 0 :z 200)
- ;; scheme seems similar
-
-== Clojure Colon ==
-
-Maps
-
- {:a 1 :b 2}
-
-Sets
- #{:a :b :c}
-
-Keywords - symbols starting with : or ::
-
----------------------------
-  user> :foo
-  :foo
-  user> ::foo
-  :user/foo
----------------------------
-
-== Clojure Colon ==
-
-Three ways to look up a key in a map:
-
-[source,clj]
----------------------------------------------
-  (get { :key "value" } :key "default")
-  (:key { :key "value" })
-  ({ :key "value" } :key)
----------------------------------------------
 
 == Haskell ==
 
@@ -658,6 +607,58 @@ where ':' gets it's own level
 ---------------------------------------------
 
 See ScalaZ and other libraries for more
+
+== Lisp/Scheme/Clojure ==
+
+* Lisp processing
+  * Encouraging a functional style
+* Anti-syntax s-expressions
+  * Enabling powerful macros
+* Futuristic old school language
+  * Dynamic
+  * Garbage collected
+* Scheme tidies and tightens
+* Clojure - Lisp on JVM with handy data-types
+
+== Lisp/Scheme Colon ==
+
+"keyword symbols", self-quoting and evaluate to themselves
+
+ :eof
+ (defstruct (point (:conc-name nil))
+   x y z)
+ (make-point :x 0 :y 0 :z 200)
+ ;; scheme seems similar
+
+== Clojure Colon ==
+
+Maps
+
+ {:a 1 :b 2}
+
+Sets
+ #{:a :b :c}
+
+Keywords - symbols starting with : or ::
+
+---------------------------
+  user> :foo
+  :foo
+  user> ::foo
+  :user/foo
+---------------------------
+
+== Clojure Colon ==
+
+Three ways to look up a key in a map:
+
+[source,clj]
+---------------------------------------------
+  (get { :key "value" } :key "default")
+  (:key { :key "value" })
+  ({ :key "value" } :key)
+---------------------------------------------
+
 
 == Erlang ==
 
