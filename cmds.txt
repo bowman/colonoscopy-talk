@@ -20,6 +20,9 @@ for f in *.*; do echo mogrify -resize '320x320\>' $f ; done
 firefox's print to pdf w/ custom size 1, unicode
 ../asciidoc-8.6.3/a2x.py --format chunked   slides.txt
 
+cp slides.html i && git checkout gh-pages && mv i index.html
+gcia
+
 asciidoc --backend slidy slides.txt \
  && ./split-slides.pl slides.html \
  && wkhtmltopdf --page-width 252mm --page-height 178mm split.slides/s*html slides.pdf

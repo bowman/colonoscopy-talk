@@ -672,6 +672,7 @@ Maps
  {:a 1 :b 2}
 
 Sets
+
  #{:a :b :c}
 
 Keywords - symbols starting with : or ::
@@ -687,7 +688,6 @@ Keywords - symbols starting with : or ::
 
 Three ways to look up a key in a map:
 
-[source,clj]
 ---------------------------------------------
   (get { :key "value" } :key "default")
   (:key { :key "value" })
