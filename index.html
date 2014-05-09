@@ -14142,6 +14142,26 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 </div>
 <div class="sect1 slide">
+<h1 id="_c_colon_output">C Colon Output</h1>
+<div class="sectionbody" style="max-width:45em">
+<div class="listingblock">
+<div class="content">
+<pre><code>$ gcc eg.c -o eg
+$ ./eg | head
+1 ./eg
+2 ./eg
+3 ./eg
+4 ./eg
+5 ./eg
+6 ./eg
+7 ./eg
+8 ./eg
+9 ./eg
+10 ./eg</code></pre>
+</div></div>
+</div>
+</div>
+<div class="sect1 slide">
 <h1 id="_c_colon_mayhem">C Colon Mayhem</h1>
 <div class="sectionbody" style="max-width:45em">
 <div class="listingblock">
@@ -18172,8 +18192,11 @@ Adds some of that new-fangled syntax
 <div class="content">
 <pre><code>{:a 1 :b 2}</code></pre>
 </div></div>
-<div class="paragraph"><p>Sets
- #{:a :b :c}</p></div>
+<div class="paragraph"><p>Sets</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>#{:a :b :c}</code></pre>
+</div></div>
 <div class="dlist"><dl class="">
 <dt class="hdlist1">
 Keywords - symbols starting with : or 
@@ -18195,7 +18218,11 @@ Keywords - symbols starting with : or
 <div class="sectionbody" style="max-width:45em">
 <div class="paragraph"><p>Three ways to look up a key in a map:</p></div>
 <div class="listingblock">
-<div class="content"></div></div>
+<div class="content">
+<pre><code>  (get { :key "value" } :key "default")
+  (:key { :key "value" })
+  ({ :key "value" } :key)</code></pre>
+</div></div>
 </div>
 </div>
 <div class="sect1 slide">
