@@ -627,9 +627,37 @@ some typing complications from OO.
 [source,scala]
 ---------------------------------------------
  ::       /* List Cons (like ML/OCaml) */
+ ::       /* A class also, apparently */
  : Type   /* Type Annotation */
  <: >:    /* Covariant and Contravariant types */
 ---------------------------------------------
+
+== Scala Colon - Details ==
+
+[source,scala]
+---------------------------------------------
+ 1 :: 2 :: 3 :: Nil == List(1, 2, 3)
+ 1.::(2.::(3.::(Nil))) // in method calls
+---------------------------------------------
+Operators ending in a colon ‘:’ are right-associative.
+All other operators are left- associative.
+
+Operators precedence is based on the first character,
+where ':' gets it's own level 
+
+== Scala Operators ==
+
+[source,scala]
+---------------------------------------------
+ 1 +: List(2) :+ 3   // add to collection
+ List(1) ::: List(2) // concat collections
+ /: :\ /:\  // colonic folds
+ :/:        // Document method
+ =:= <:<    // type constraints
+ ?:         // who knows?
+---------------------------------------------
+
+See ScalaZ and other libraries for more
 
 == Erlang ==
 
