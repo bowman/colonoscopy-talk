@@ -653,6 +653,7 @@ See ScalaZ and other libraries for more
   * Garbage collected
 * Scheme tidies and tightens
 * Clojure - Lisp on JVM with handy data-types
+  * Adds some of that new-fangled syntax
 
 == Lisp/Scheme Colon ==
 
@@ -692,7 +693,6 @@ Three ways to look up a key in a map:
   (:key { :key "value" })
   ({ :key "value" } :key)
 ---------------------------------------------
-
 
 == Erlang ==
 
